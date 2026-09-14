@@ -93,81 +93,150 @@ document.addEventListener("DOMContentLoaded", () => {
 
 CSS = """
 :root {
-  color-scheme: light dark;
-  --bg: #ffffff;
-  --fg: #1a1a1a;
-  --muted: #5a5a5a;
-  --border: #ddd;
-  --accent: #2b5797;
-  --pass: #1a7f37;
-  --fail: #cf222e;
-  --card-bg: #f7f7f8;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #16181c;
-    --fg: #e8e8e8;
-    --muted: #a0a0a0;
-    --border: #3a3d42;
-    --accent: #7fb1ff;
-    --pass: #4fbf67;
-    --fail: #ff6b6b;
-    --card-bg: #1f2227;
-  }
+  --ink: #222222;        /* Mine Shaft — default text color everywhere */
+  --ink-soft: rgba(34, 34, 34, 0.62);
+  --accent: #1D9ACC;      /* Curious Blue — links, focus states, labels, small highlights */
+  --tint: #8ED1FC;        /* Malibu — background tints and hover states only, never text */
+  --tint-soft: rgba(142, 209, 252, 0.35);
+  --bg: #FFFFFF;
+  --hairline: rgba(34, 34, 34, 0.12);
 }
 * { box-sizing: border-box; }
+html { color-scheme: light; }
 body {
   background: var(--bg);
-  color: var(--fg);
+  color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   margin: 0;
-  padding: 0 16px 48px;
-  line-height: 1.5;
+  padding: 0 24px 64px;
+  line-height: 1.6;
+  font-size: 16px;
 }
-.wrap { max-width: 860px; margin: 0 auto; }
-h1 { font-size: 1.6rem; margin-top: 2rem; }
-h2 { font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; margin-top: 2.5rem; }
-h3 { font-size: 1.05rem; margin-bottom: 0.2rem; }
-.subtitle { color: var(--muted); margin-top: -0.5rem; }
-nav.top-links a { margin-right: 1rem; }
-.theme-card {
-  border: 1px solid var(--border);
-  border-radius: 8px;
+.wrap { max-width: 720px; margin: 0 auto; }
+
+a { color: var(--accent); }
+a:hover { color: var(--accent); text-decoration-thickness: 2px; }
+
+.site-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+}
+.site-header .titles { flex: 1 1 0%; min-width: 0; }
+.site-header .brand {
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  margin-top: 0.3rem;
+}
+h1 { font-size: 2rem; font-weight: 700; margin: 0; }
+.subtitle { color: var(--ink-soft); margin-top: 0.75rem; font-size: 1rem; }
+
+nav.top-links { margin-bottom: 2.5rem; font-size: 1rem; }
+nav.top-links a { margin-right: 1.5rem; text-decoration: none; }
+nav.top-links a:hover { text-decoration: underline; }
+
+.kicker {
+  display: block;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+section.theme { margin: 4rem 0; }
+section.theme:first-of-type { margin-top: 0; }
+h2 { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.6rem; }
+.theme-desc { color: var(--ink-soft); font-size: 1rem; margin: 0 0 1rem; }
+.sources-touched { font-size: 1rem; margin: 0 0 1.75rem; }
+.sources-touched .count { color: var(--accent); font-weight: 700; }
+
+.quote-block {
+  background: var(--tint);
+  border-radius: 6px;
   padding: 1rem 1.25rem;
-  margin: 1.25rem 0;
-  background: var(--card-bg);
+  margin: 0 0 1.75rem;
 }
-.theme-desc { color: var(--muted); }
-.sources-touched { font-size: 0.9rem; color: var(--muted); margin: 0.5rem 0 1rem; }
-blockquote {
-  margin: 0.5rem 0;
-  padding: 0.5rem 0.9rem;
-  border-left: 3px solid var(--accent);
-  background: var(--bg);
+.quote-block blockquote {
+  margin: 0 0 0.6rem;
+  padding: 0;
+  font-size: 1rem;
+  color: var(--ink);
 }
-.quote-meta { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.75rem; }
-.tally {
-  font-size: 1.05rem;
+.quote-meta { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
+.quote-meta .tag {
+  color: var(--accent);
   font-weight: 600;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  background: var(--card-bg);
-  display: inline-block;
 }
-table { border-collapse: collapse; width: 100%; margin-top: 1rem; font-size: 0.9rem; }
-th, td { border: 1px solid var(--border); padding: 0.5rem 0.6rem; text-align: left; vertical-align: top; }
-th { background: var(--card-bg); }
-.status-pass { color: var(--pass); font-weight: 600; }
-.status-fail { color: var(--fail); font-weight: 600; }
-#qa-form { display: flex; gap: 0.5rem; margin: 1rem 0 0.25rem; flex-wrap: wrap; }
-#qa-input { flex: 1 1 280px; padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--fg); }
-#qa-form button { padding: 0.5rem 1rem; border: 1px solid var(--accent); border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
-.qa-caption { font-size: 0.85rem; color: var(--muted); margin-top: 0; }
-.qa-empty { color: var(--muted); font-style: italic; }
-.qa-result { margin-bottom: 1rem; }
-.qa-meta { font-size: 0.85rem; color: var(--muted); }
-footer { color: var(--muted); font-size: 0.8rem; margin-top: 3rem; }
-code { background: var(--card-bg); padding: 0.1rem 0.3rem; border-radius: 4px; }
+
+.tally {
+  font-size: 1.1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  background: var(--tint);
+  display: inline-block;
+  margin: 1.5rem 0 2.5rem;
+}
+.tally .num { color: var(--accent); font-weight: 700; }
+
+.table-wrap { overflow-x: auto; margin: 1rem 0 3rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td { padding: 0.6rem 0.7rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hairline); }
+td.src { overflow-wrap: anywhere; }
+th {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.status-pass { color: var(--accent); font-weight: 700; }
+.status-fail { color: var(--ink); font-weight: 700; background: var(--tint); border-radius: 4px; padding: 0.15rem 0.5rem; }
+
+#qa-form { display: flex; gap: 0.75rem; margin: 1.5rem 0 0.5rem; flex-wrap: wrap; }
+#qa-input {
+  flex: 1 1 280px;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid var(--hairline);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 1rem;
+}
+#qa-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+#qa-form button {
+  padding: 0.6rem 1.25rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#qa-form button:hover { background: var(--tint-soft); }
+#qa-form button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.qa-caption { font-size: 0.9rem; color: var(--ink-soft); margin: 0.5rem 0 0; }
+.qa-empty { color: var(--ink-soft); font-style: italic; }
+.qa-result {
+  background: var(--tint);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+.qa-result blockquote { margin: 0 0 0.6rem; padding: 0; }
+.qa-meta { font-size: 0.9rem; color: var(--ink-soft); }
+
+footer { color: var(--ink-soft); font-size: 0.9rem; margin-top: 4rem; }
+code { background: var(--tint-soft); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }
 """
 
 
@@ -188,33 +257,44 @@ def render_index_html(themes: list[Theme], verified: list[VerificationResult]) -
         "</head>",
         "<body>",
         '<div class="wrap">',
+        '<header class="site-header">',
+        "<div class=\"titles\">",
         "<h1>GNP Evidence Pipeline</h1>",
         '<p class="subtitle">Themed evidence matrix, built from verbatim bullet lines pulled directly out of the interview transcripts. No LLM was used to identify themes: matching is a deterministic keyword lookup against <code>themes.json</code>.</p>',
+        "</div>",
+        '<div class="brand">GNP</div>',
+        "</header>",
         '<nav class="top-links"><a href="verification.html">Verification report</a> · <a href="quotes.json">quotes.json</a></nav>',
     ]
 
-    for theme in themes:
+    for i, theme in enumerate(themes, start=1):
         theme_quotes = [r for r in verified if theme.name in r.themes]
         sources = _theme_sources(theme.name, verified)
-        parts.append('<div class="theme-card">')
+        parts.append('<section class="theme">')
+        parts.append(f'<span class="kicker">Theme {i}</span>')
         parts.append(f"<h2>{escape(theme.name)}</h2>")
         parts.append(f'<p class="theme-desc">{escape(theme.description)}</p>')
         if sources:
             parts.append(
-                f'<p class="sources-touched">Interviews touching this theme ({len(sources)}): {escape(", ".join(sources))}</p>'
+                f'<p class="sources-touched">Interviews touching this theme: '
+                f'<span class="count">{len(sources)}</span> &mdash; {escape(", ".join(sources))}</p>'
             )
         else:
             parts.append('<p class="sources-touched">No verified quotes matched this theme yet.</p>')
         for r in theme_quotes:
+            parts.append('<div class="quote-block">')
             parts.append(f'<blockquote>&ldquo;{escape(r.quote)}&rdquo;</blockquote>')
             other_themes = [t for t in r.themes if t != theme.name]
-            other_note = f" (also: {escape(', '.join(other_themes))})" if other_themes else ""
+            other_note = f' <span class="tag">also: {escape(", ".join(other_themes))}</span>' if other_themes else ""
             parts.append(
                 f'<p class="quote-meta">&mdash; {escape(r.speaker)}, <code>{escape(r.source_file)}</code>{other_note}</p>'
             )
-        parts.append("</div>")
+            parts.append("</div>")
+        parts.append("</section>")
 
-    parts.append("<h2>Ask a question</h2>")
+    parts.append('<section class="theme">')
+    parts.append('<span class="kicker">Ask a question</span>')
+    parts.append("<h2>Search the verified quotes</h2>")
     parts.append(
         '<p class="qa-caption">This is keyword-based retrieval over the verified quotes below &mdash; not a language model. It scores shared words between your question and each quote, and shows the best match(es), or says so when nothing clears the bar.</p>'
     )
@@ -223,6 +303,7 @@ def render_index_html(themes: list[Theme], verified: list[VerificationResult]) -
     )
     parts.append('<div id="qa-results"></div>')
     parts.append('<script src="search.js"></script>')
+    parts.append("</section>")
 
     parts.append("<footer>Generated by <code>python main.py</code> from <code>interviews/</code> and <code>themes.json</code>. See <code>verification.html</code> for the pass/fail proof behind every quote above.</footer>")
     parts.append("</div></body></html>")
@@ -233,7 +314,11 @@ def render_verification_html(all_results: list[VerificationResult]) -> str:
     total = len(all_results)
     passed = sum(1 for r in all_results if r.passed)
     failed = total - passed
-    tally = f"{total} quotes extracted · {passed} verified word-for-word · {failed} failures"
+    tally = (
+        f'<span class="num">{total}</span> quotes extracted &middot; '
+        f'<span class="num">{passed}</span> verified word-for-word &middot; '
+        f'<span class="num">{failed}</span> failures'
+    )
 
     parts = [
         "<!doctype html>",
@@ -246,35 +331,53 @@ def render_verification_html(all_results: list[VerificationResult]) -> str:
         "</head>",
         "<body>",
         '<div class="wrap">',
+        '<header class="site-header">',
+        "<div class=\"titles\">",
         "<h1>Verbatim Verification Report</h1>",
+        '<p class="subtitle">Every quote extracted from the interviews is re-checked here, independently of the extraction step, by looking it up as a literal substring of its cited source file (after normalizing smart quotes and whitespace &mdash; no fuzzy matching).</p>',
+        "</div>",
+        '<div class="brand">GNP</div>',
+        "</header>",
         '<nav class="top-links"><a href="index.html">&larr; Evidence matrix</a></nav>',
-        '<p>Every quote extracted from the interviews is re-checked here, independently of the extraction step, by looking it up as a literal substring of its cited source file (after normalizing smart quotes and whitespace &mdash; no fuzzy matching).</p>',
         f'<p class="tally">{tally}</p>',
     ]
 
     if failed:
-        parts.append("<h2>Failures</h2>")
-        parts.append("<p>These quotes did not verify and were excluded from the evidence matrix.</p>")
-        parts.append("<table><tr><th>Quote</th><th>Speaker</th><th>Source</th><th>Status</th></tr>")
+        parts.append('<section class="theme">')
+        parts.append('<span class="kicker">Failures</span>')
+        parts.append("<h2>Excluded from the evidence matrix</h2>")
+        parts.append(
+            '<div class="table-wrap"><table>'
+            '<colgroup><col style="width:46%"><col style="width:18%"><col style="width:26%"><col style="width:10%"></colgroup>'
+            '<tr><th>Quote</th><th>Speaker</th><th>Source</th><th>Status</th></tr>'
+        )
         for r in all_results:
             if not r.passed:
                 parts.append(
                     f'<tr><td>&ldquo;{escape(r.quote)}&rdquo;</td><td>{escape(r.speaker)}</td>'
-                    f'<td>{escape(r.source_file)}</td><td class="status-fail">FAIL</td></tr>'
+                    f'<td class="src">{escape(r.source_file)}</td><td class="status-fail">FAIL</td></tr>'
                 )
-        parts.append("</table>")
+        parts.append("</table></div>")
+        parts.append("</section>")
 
-    parts.append("<h2>All results</h2>")
-    parts.append("<table><tr><th>Quote</th><th>Speaker</th><th>Source</th><th>Themes</th><th>Status</th></tr>")
+    parts.append('<section class="theme">')
+    parts.append('<span class="kicker">All results</span>')
+    parts.append("<h2>Every extracted quote</h2>")
+    parts.append(
+        '<div class="table-wrap"><table>'
+        '<colgroup><col style="width:34%"><col style="width:14%"><col style="width:19%"><col style="width:23%"><col style="width:10%"></colgroup>'
+        '<tr><th>Quote</th><th>Speaker</th><th>Source</th><th>Themes</th><th>Status</th></tr>'
+    )
     for r in all_results:
         status_cls = "status-pass" if r.passed else "status-fail"
         status_text = "PASS" if r.passed else "FAIL"
         parts.append(
             f'<tr><td>&ldquo;{escape(r.quote)}&rdquo;</td><td>{escape(r.speaker)}</td>'
-            f'<td>{escape(r.source_file)}</td><td>{escape(", ".join(r.themes))}</td>'
+            f'<td class="src">{escape(r.source_file)}</td><td>{escape(", ".join(r.themes))}</td>'
             f'<td class="{status_cls}">{status_text}</td></tr>'
         )
-    parts.append("</table>")
+    parts.append("</table></div>")
+    parts.append("</section>")
     parts.append("</div></body></html>")
     return "\n".join(parts)
 
