@@ -1,0 +1,35 @@
+[
+  {
+    "quote": "I started 30 years ago as a controller, so a lot of the bureaucracy is my responsibility",
+    "speaker": "President & CEO",
+    "source_file": "interview_1_President_and_CEO.txt",
+    "themes": [
+      "Decisions bottleneck at the top"
+    ]
+  },
+  {
+    "quote": "The Community team won't speak to the Early Childhood Education Team",
+    "speaker": "President & CEO",
+    "source_file": "interview_1_President_and_CEO.txt",
+    "themes": [
+      "GNP works in silos"
+    ]
+  },
+  {
+    "quote": "Health would show up in New Mexico and Education would show up in NM. So there wasn't a unified GNP foundation to the community there, there were multiple GNP Foundations",
+    "speaker": "Chief Operating Officer",
+    "source_file": "interview_2_Chief_Operating_Officer.txt",
+    "themes": [
+      "GNP works in silos"
+    ]
+  },
+  {
+    "quote": "Right now there's a lot of back and forth before we can make a decision, the Family Health Team would have to work with the Geography, would have to loop in their supervisors, grant management department, legal team for advice — lots of touchpoints across the organization",
+    "speaker": "Project Manager",
+    "source_file": "interview_5_Project_Manager.txt",
+    "themes": [
+      "Decisions bottleneck at the top",
+      "GNP works in silos"
+    ]
+  }
+]

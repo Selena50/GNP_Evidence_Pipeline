@@ -1,0 +1,14 @@
+{
+  "themes": [
+    {
+      "name": "Decisions bottleneck at the top",
+      "description": "Approvals concentrate with the CEO and Executive Council, even for routine matters.",
+      "keywords": ["approval", "sign off", "escalat", "executive council", "hierarchy", "bureaucracy", "decision"]
+    },
+    {
+      "name": "GNP works in silos",
+      "description": "Departments and programs operate independently, creating friction at every handoff.",
+      "keywords": ["silo", "own team", "handoff", "multiple gnp", "matrixed", "cross-functional", "department"]
+    }
+  ]
+}
