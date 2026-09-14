@@ -23,6 +23,7 @@ class Theme:
     name: str
     description: str
     keywords: list[str]
+    exclude_keywords: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -36,7 +37,12 @@ class QuoteMatch:
 def load_themes(themes_path: str | Path) -> list[Theme]:
     data = json.loads(Path(themes_path).read_text(encoding="utf-8"))
     return [
-        Theme(name=t["name"], description=t.get("description", ""), keywords=t.get("keywords", []))
+        Theme(
+            name=t["name"],
+            description=t.get("description", ""),
+            keywords=t.get("keywords", []),
+            exclude_keywords=t.get("exclude_keywords", []),
+        )
         for t in data.get("themes", [])
     ]
 
@@ -84,6 +90,8 @@ def find_matching_themes(context_line: str, themes: list[Theme]) -> list[str]:
     lowered = context_line.lower()
     matched = []
     for theme in themes:
+        if any(exclude.lower() in lowered for exclude in theme.exclude_keywords):
+            continue
         for keyword in theme.keywords:
             if keyword.lower() in lowered:
                 matched.append(theme.name)

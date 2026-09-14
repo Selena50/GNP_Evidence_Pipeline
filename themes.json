@@ -3,17 +3,20 @@
     {
       "name": "Decisions bottleneck at the top",
       "description": "Approvals concentrate with the CEO and Executive Council, so routine matters wait weeks for decisions that could be made below them.",
-      "keywords": ["approval", "approved", "sign off", "escalat", "executive council", "hierarchy", "hierarchical", "bureaucra", "decision", "pyramid", "top having the answer", "defer", "board meeting", "centraliz", "command and control", "override", "overriding", "circular", "postpone", "meeting cycle", "one person at the top"]
+      "keywords": ["approval", "approved", "sign off", "escalat", "executive council", "hierarchy", "hierarchical", "bureaucra", "decision", "pyramid", "top having the answer", "defer", "board meeting", "centraliz", "command and control", "override", "overriding", "circular", "postpone", "meeting cycle", "one person at the top"],
+      "exclude_keywords": ["have a coach", "time consuming", "pushing down decisions", "double-edged sword", "Family Health Team"]
     },
     {
       "name": "GNP works in silos, and change lands without warning",
       "description": "Departments and programs work in silos, and past change has reached staff without notice, fueling friction and skepticism.",
-      "keywords": ["silo", "own team", "own domain", "handoff", "hand-off", "multiple gnp", "matrixed", "matrix", "cross-functional", "cross functional", "national", "department", "fragment", "flavor of the year", "communicat", "rumor", "rumour", "announce", "reorg", "transparen", "resistant to change", "resistance", "inertia", "scarred", "lean down", "skeptic", "clique", "tenure", "hide in the shadows", "networked team", "braided efforts", "one voice", "one foundation", "mindshare", "touchpoint", "two supervisors", "geography", "geographic"]
+      "keywords": ["silo", "own team", "own domain", "handoff", "hand-off", "multiple gnp", "matrixed", "matrix", "cross-functional", "cross functional", "national", "department", "fragment", "flavor of the year", "communicat", "rumor", "rumour", "announce", "reorg", "transparen", "resistant to change", "resistance", "inertia", "scarred", "lean down", "skeptic", "clique", "tenure", "hide in the shadows", "networked team", "one voice", "one foundation", "mindshare", "touchpoint", "two supervisors", "geography", "geographic"],
+      "exclude_keywords": ["PCKA", "time consuming", "one voice", "partnering org", "domestic and internationally", "Chief Policy Officer", "great communicator"]
     },
     {
       "name": "Grantee experience is declining",
       "description": "Grantees describe a foundation that is slow, unclear about what it funds, and hard to build a lasting partnership with.",
-      "keywords": ["grantee", "granting process", "partner with", "partnership", "partnering", "responsive", "proactive", "convoluted", "easy to work with", "relationships with the foundation", "agile", "funding", "what we're funding", "strategy support", "community engagement", "cultivation", "speak plainly", "our customers", "satisfaction", "show up", "systemic change", "processed faster", "hard to build"]
+      "keywords": ["grantee", "granting process", "partner with", "partnership", "partnering", "responsive", "proactive", "convoluted", "easy to work with", "relationships with the foundation", "agile", "funding", "what we're funding", "strategy support", "community engagement", "cultivation", "speak plainly", "our customers", "satisfaction", "show up", "systemic change", "processed faster", "hard to build"],
+      "exclude_keywords": ["Regional lead", "skill gaps", "planfulness"]
     }
   ]
 }

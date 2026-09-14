@@ -71,6 +71,48 @@ class TestExtractQuotes(unittest.TestCase):
         matches = extract.extract_quotes_from_file(path, self.themes)
         self.assertEqual(len(matches), 1)
 
+    def test_exclude_keyword_blocks_an_otherwise_matching_line(self):
+        themes = [
+            extract.Theme(
+                name="Decisions bottleneck at the top",
+                description="test",
+                keywords=["hierarchy"],
+                exclude_keywords=["hierarchy of needs"],
+            )
+        ]
+        path = self._write(
+            "interview_5_Test_Role.txt",
+            "GNP FOUNDATION — INTERVIEW NOTES (5 of 5) | Test Role\n\n"
+            "PAIN POINTS\n"
+            "- Maslow's hierarchy of needs explains motivation\n",
+        )
+        matches = extract.extract_quotes_from_file(path, themes)
+        self.assertEqual(matches, [])
+
+    def test_exclude_keyword_does_not_affect_other_themes(self):
+        themes = [
+            extract.Theme(
+                name="Decisions bottleneck at the top",
+                description="test",
+                keywords=["hierarchy"],
+                exclude_keywords=["hierarchy of needs"],
+            ),
+            extract.Theme(
+                name="Other theme",
+                description="test",
+                keywords=["motivation"],
+            ),
+        ]
+        path = self._write(
+            "interview_6_Test_Role.txt",
+            "GNP FOUNDATION — INTERVIEW NOTES (6 of 5) | Test Role\n\n"
+            "PAIN POINTS\n"
+            "- Maslow's hierarchy of needs explains motivation\n",
+        )
+        matches = extract.extract_quotes_from_file(path, themes)
+        self.assertEqual(len(matches), 1)
+        self.assertEqual(matches[0].themes, ["Other theme"])
+
 
 if __name__ == "__main__":
     unittest.main()
