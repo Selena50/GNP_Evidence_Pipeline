@@ -8,14 +8,6 @@
     ]
   },
   {
-    "quote": "My President's Discretionary Fund",
-    "speaker": "President & CEO",
-    "source_file": "interview_1_President_and_CEO.txt",
-    "themes": [
-      "Grantee experience is declining"
-    ]
-  },
-  {
     "quote": "The Community team won't speak to the Early Childhood Education Team",
     "speaker": "President & CEO",
     "source_file": "interview_1_President_and_CEO.txt",
@@ -52,6 +44,7 @@
     "speaker": "Project Manager",
     "source_file": "interview_5_Project_Manager.txt",
     "themes": [
+      "Decisions bottleneck at the top",
       "GNP works in silos, and change lands without warning"
     ]
   }

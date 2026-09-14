@@ -3,7 +3,7 @@
     {
       "name": "Decisions bottleneck at the top",
       "description": "Approvals concentrate with the CEO and Executive Council, so routine matters wait weeks for decisions that could be made below them.",
-      "keywords": ["approval", "approved", "sign off", "escalate", "executive council", "hierarchy", "bureaucracy"]
+      "keywords": ["approval", "approved", "sign off", "escalate", "executive council", "hierarchy", "bureaucracy", "decision"]
     },
     {
       "name": "GNP works in silos, and change lands without warning",
@@ -13,7 +13,7 @@
     {
       "name": "Grantee experience is declining",
       "description": "Grantees describe a foundation that is slow, unclear about what it funds, and hard to build a lasting partnership with.",
-      "keywords": ["grantee", "granting process", "partner with", "responsive"]
+      "keywords": ["grantee", "granting process", "partner with", "more responsive", "relationships"]
     }
   ]
 }
