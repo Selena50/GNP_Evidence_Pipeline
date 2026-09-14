@@ -1,11 +1,14 @@
 GNP Evidence Pipeline — Verbatim Verification Report
 =======================================================
 
-4 quotes extracted · 4 verified word-for-word · 0 failures
+7 quotes extracted · 7 verified word-for-word · 0 failures
 
 ALL RESULTS
 -----------
 PASS: "I started 30 years ago as a controller, so a lot of the bureaucracy is my responsibility"  [President & CEO — interview_1_President_and_CEO.txt] themes: Decisions bottleneck at the top
-PASS: "The Community team won't speak to the Early Childhood Education Team"  [President & CEO — interview_1_President_and_CEO.txt] themes: GNP works in silos
-PASS: "Health would show up in New Mexico and Education would show up in NM. So there wasn't a unified GNP foundation to the community there, there were multiple GNP Foundations"  [Chief Operating Officer — interview_2_Chief_Operating_Officer.txt] themes: GNP works in silos
-PASS: "Right now there's a lot of back and forth before we can make a decision, the Family Health Team would have to work with the Geography, would have to loop in their supervisors, grant management department, legal team for advice — lots of touchpoints across the organization"  [Project Manager — interview_5_Project_Manager.txt] themes: Decisions bottleneck at the top, GNP works in silos
+PASS: "My President's Discretionary Fund"  [President & CEO — interview_1_President_and_CEO.txt] themes: Grantee experience is declining
+PASS: "The Community team won't speak to the Early Childhood Education Team"  [President & CEO — interview_1_President_and_CEO.txt] themes: GNP works in silos, and change lands without warning
+PASS: "Health would show up in New Mexico and Education would show up in NM. So there wasn't a unified GNP foundation to the community there, there were multiple GNP Foundations"  [Chief Operating Officer — interview_2_Chief_Operating_Officer.txt] themes: GNP works in silos, and change lands without warning
+PASS: "How do we show up to our grantees to drive systemic change?"  [Chief Operating Officer — interview_2_Chief_Operating_Officer.txt] themes: Grantee experience is declining
+PASS: "Pretty soon 50 people start hearing about this project and in lieu of any clear communications, the rumor mill starts"  [Project Manager — interview_5_Project_Manager.txt] themes: GNP works in silos, and change lands without warning
+PASS: "Right now there's a lot of back and forth before we can make a decision, the Family Health Team would have to work with the Geography, would have to loop in their supervisors, grant management department, legal team for advice — lots of touchpoints across the organization"  [Project Manager — interview_5_Project_Manager.txt] themes: GNP works in silos, and change lands without warning

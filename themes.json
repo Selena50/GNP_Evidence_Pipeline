@@ -2,13 +2,18 @@
   "themes": [
     {
       "name": "Decisions bottleneck at the top",
-      "description": "Approvals concentrate with the CEO and Executive Council, even for routine matters.",
-      "keywords": ["approval", "sign off", "escalat", "executive council", "hierarchy", "bureaucracy", "decision"]
+      "description": "Approvals concentrate with the CEO and Executive Council, so routine matters wait weeks for decisions that could be made below them.",
+      "keywords": ["approval", "approved", "sign off", "escalate", "executive council", "hierarchy", "bureaucracy"]
     },
     {
-      "name": "GNP works in silos",
-      "description": "Departments and programs operate independently, creating friction at every handoff.",
-      "keywords": ["silo", "own team", "handoff", "multiple gnp", "matrixed", "cross-functional", "department"]
+      "name": "GNP works in silos, and change lands without warning",
+      "description": "Departments and programs work in silos, and past change has reached staff without notice, fueling friction and skepticism.",
+      "keywords": ["silo", "department", "handoff", "multiple gnp", "matrixed", "national", "flavor of the year", "communicate", "rumor"]
+    },
+    {
+      "name": "Grantee experience is declining",
+      "description": "Grantees describe a foundation that is slow, unclear about what it funds, and hard to build a lasting partnership with.",
+      "keywords": ["grantee", "granting process", "partner with", "responsive"]
     }
   ]
 }
