@@ -189,7 +189,7 @@ def render_index_html(themes: list[Theme], verified: list[VerificationResult]) -
         "<body>",
         '<div class="wrap">',
         "<h1>GNP Evidence Pipeline</h1>",
-        '<p class="subtitle">Themed evidence matrix, built from verbatim quotes pulled directly out of the interview transcripts. No LLM was used to identify themes: matching is a deterministic keyword lookup against <code>themes.json</code>.</p>',
+        '<p class="subtitle">Themed evidence matrix, built from verbatim bullet lines pulled directly out of the interview transcripts. No LLM was used to identify themes: matching is a deterministic keyword lookup against <code>themes.json</code>.</p>',
         '<nav class="top-links"><a href="verification.html">Verification report</a> · <a href="quotes.json">quotes.json</a></nav>',
     ]
 

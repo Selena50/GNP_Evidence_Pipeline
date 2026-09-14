@@ -3,8 +3,8 @@
 
     python main.py
 
-Reads interviews/*.txt and themes.json, extracts quoted evidence,
-verifies every quote word-for-word against its source file, and writes
+Reads interviews/*.txt and themes.json, extracts every bulleted line as a
+candidate quote, verifies each one word-for-word against its source file, and writes
 docs/ (the publishable static site) and output/ (a plain-text report).
 No network access, no API keys, standard library only.
 """

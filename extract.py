@@ -1,8 +1,10 @@
 """Deterministic, keyword-driven quote extraction from interview transcripts.
 
 No LLM calls anywhere here: theme matching is a case-insensitive substring
-check against the keyword lists in themes.json. A "quote" only ever comes
-from text that was already wrapped in quotation marks in the source file.
+check against the keyword lists in themes.json. Every bulleted line is a
+candidate quote, whether or not it happens to contain literal quotation
+marks in the source; the only thing stripped off is the leading bullet
+marker itself.
 """
 from __future__ import annotations
 
@@ -11,11 +13,9 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-# Matches a straight-quoted or curly-quoted span within a single line.
-# Straight quotes: "..."   Curly quotes: “...”
-QUOTE_PATTERN = re.compile(r'"([^"]+)"|“([^”]+)”')
-
 HEADER_SPEAKER_PATTERN = re.compile(r'\|\s*(.+?)\s*$')
+
+_BULLET_CHARS = ("-", "*", "•")
 
 
 @dataclass
@@ -48,7 +48,21 @@ def is_bullet_line(line: str) -> bool:
     without special-casing them: headers and the title line never start
     with a bullet marker in these transcripts.
     """
-    return line.strip().startswith(("-", "*", "•"))
+    return line.strip().startswith(_BULLET_CHARS)
+
+
+def strip_bullet_marker(line: str) -> str:
+    """Remove only the leading bullet marker and surrounding whitespace.
+
+    Everything else about the line -- wording, punctuation, casing, any
+    quotation marks it happens to contain -- is left exactly as-is, since
+    this stripped text is what verify.py later checks word-for-word
+    against the source file.
+    """
+    text = line.strip()
+    if text[:1] in _BULLET_CHARS:
+        text = text[1:].lstrip()
+    return text
 
 
 def derive_speaker(file_path: str | Path, lines: list[str]) -> str:
@@ -87,18 +101,17 @@ def extract_quotes_from_file(file_path: str | Path, themes: list[Theme]) -> list
     for line in lines:
         if not line.strip() or not is_bullet_line(line):
             continue
-        for m in QUOTE_PATTERN.finditer(line):
-            quote_text = m.group(1) if m.group(1) is not None else m.group(2)
-            matched_themes = find_matching_themes(line, themes)
-            if matched_themes:
-                matches.append(
-                    QuoteMatch(
-                        quote=quote_text,
-                        speaker=speaker,
-                        source_file=file_path.name,
-                        themes=matched_themes,
-                    )
+        quote_text = strip_bullet_marker(line)
+        matched_themes = find_matching_themes(quote_text, themes)
+        if matched_themes:
+            matches.append(
+                QuoteMatch(
+                    quote=quote_text,
+                    speaker=speaker,
+                    source_file=file_path.name,
+                    themes=matched_themes,
                 )
+            )
     return matches
 
 

@@ -11,18 +11,21 @@ the Python standard library.
 python main.py
 ```
 
-This reads `interviews/*.txt` and `themes.json`, extracts every quoted
-substring from the transcripts, checks each one against every theme's
-keyword list, independently re-verifies every extracted quote word-for-word
-against its cited source file, and regenerates `docs/` and `output/` from
-scratch.
+This reads `interviews/*.txt` and `themes.json`, treats every bulleted line
+in the transcripts as a candidate quote, checks each one against every
+theme's keyword list, independently re-verifies every extracted quote
+word-for-word against its cited source file, and regenerates `docs/` and
+`output/` from scratch.
 
 ## How it works
 
-- **`extract.py`** — splits each transcript into bullet lines, pulls out
-  text already wrapped in quotation marks (straight or curly), and matches
-  each quote against the keyword lists in `themes.json`. Theme identification
-  is pure keyword matching — no LLM is called anywhere in this pipeline.
+- **`extract.py`** — splits each transcript into bullet lines (skipping
+  blank lines and all-caps section headers) and strips only the leading
+  bullet marker, leaving the rest of the line — wording, punctuation,
+  casing, any quotation marks it happens to contain — untouched. That
+  stripped line is the candidate quote; it's matched against the keyword
+  lists in `themes.json`. Theme identification is pure keyword matching —
+  no LLM is called anywhere in this pipeline.
 - **`verify.py`** — independently re-checks every extracted quote against its
   source file: normalize smart quotes and whitespace on both sides, then
   require exact substring containment. No fuzzy matching.

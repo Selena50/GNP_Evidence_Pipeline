@@ -24,12 +24,12 @@ class TestExtractQuotes(unittest.TestCase):
         path.write_text(content, encoding="utf-8")
         return path
 
-    def test_quoted_bullet_matching_keyword_is_extracted(self):
+    def test_bullet_line_matching_keyword_is_extracted_verbatim(self):
         path = self._write(
             "interview_1_Test_Role.txt",
             "GNP FOUNDATION — INTERVIEW NOTES (1 of 5) | Test Role\n\n"
             "PAIN POINTS\n"
-            '- "The hierarchy causes leadership to struggle with approvals"\n',
+            "- The hierarchy causes leadership to struggle with approvals\n",
         )
         matches = extract.extract_quotes_from_file(path, self.themes)
         self.assertEqual(len(matches), 1)
@@ -37,32 +37,36 @@ class TestExtractQuotes(unittest.TestCase):
         self.assertEqual(matches[0].speaker, "Test Role")
         self.assertIn("Decisions bottleneck at the top", matches[0].themes)
 
-    def test_quoted_bullet_with_no_keyword_hit_is_excluded(self):
+    def test_bullet_with_no_keyword_hit_is_excluded(self):
         path = self._write(
             "interview_2_Test_Role.txt",
             "GNP FOUNDATION — INTERVIEW NOTES (2 of 5) | Test Role\n\n"
             "STRENGTHS\n"
-            '- "We have a lot of passionate, mission-driven people"\n',
+            "- We have a lot of passionate, mission-driven people\n",
         )
         matches = extract.extract_quotes_from_file(path, self.themes)
         self.assertEqual(matches, [])
 
-    def test_unquoted_bullet_is_never_extracted_even_with_keyword(self):
+    def test_internal_quotation_marks_are_preserved_verbatim(self):
         path = self._write(
             "interview_3_Test_Role.txt",
             "GNP FOUNDATION — INTERVIEW NOTES (3 of 5) | Test Role\n\n"
             "PAIN POINTS\n"
-            "- The hierarchy and approval chain is too slow, no quotes here\n",
+            '- "The hierarchy is out of control," she said, asking for an approval process overhaul\n',
         )
         matches = extract.extract_quotes_from_file(path, self.themes)
-        self.assertEqual(matches, [])
+        self.assertEqual(len(matches), 1)
+        self.assertEqual(
+            matches[0].quote,
+            '"The hierarchy is out of control," she said, asking for an approval process overhaul',
+        )
 
     def test_all_caps_headers_and_blank_lines_are_skipped(self):
         path = self._write(
             "interview_4_Test_Role.txt",
             "GNP FOUNDATION — INTERVIEW NOTES (4 of 5) | Test Role\n\n"
             "PAIN POINTS\n\n"
-            '- "The hierarchy is a real approval bottleneck"\n',
+            "- The hierarchy is a real approval bottleneck\n",
         )
         matches = extract.extract_quotes_from_file(path, self.themes)
         self.assertEqual(len(matches), 1)
