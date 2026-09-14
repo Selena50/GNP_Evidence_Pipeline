@@ -65,12 +65,41 @@ nav.top-links a:hover { text-decoration: underline; }
   margin-bottom: 0.5rem;
 }
 
-section.theme { margin: 4rem 0; }
-section.theme:first-of-type { margin-top: 0; }
+.theme { margin: 4rem 0; }
+nav.top-links + .theme { margin-top: 0; }
 h2 { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.6rem; }
 .theme-desc { color: var(--ink-soft); font-size: 1rem; margin: 0 0 1rem; }
 .sources-touched { font-size: 1rem; margin: 0 0 1.75rem; }
 .sources-touched .count { color: var(--accent); font-weight: 700; }
+
+details.theme { margin: 3rem 0; }
+details.theme > summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+details.theme > summary::-webkit-details-marker { display: none; }
+details.theme > summary::marker { content: ""; }
+details.theme > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+details.theme .theme-summary-text h2 { margin: 0 0 0.4rem; }
+details.theme .theme-summary-text .theme-desc { margin: 0; }
+details.theme .chevron {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-top: 0.1rem;
+  transition: transform 0.15s ease;
+}
+details.theme[open] .chevron { transform: rotate(180deg); }
+details.theme .theme-body { margin-top: 1.5rem; }
 
 .quote-block {
   background: var(--tint);
@@ -162,10 +191,24 @@ code { background: var(--tint-soft); padding: 0.1rem 0.35rem; border-radius: 4px
 <div class="brand">GNP</div>
 </header>
 <nav class="top-links"><a href="verification.html">Verification report</a> · <a href="quotes.json">quotes.json</a></nav>
-<section class="theme">
+<section class="theme qa-section">
+<span class="kicker">Ask a question</span>
+<h2>Search the verified quotes</h2>
+<p class="qa-caption">This is keyword-based retrieval over the verified quotes below &mdash; not a language model. It scores shared words between your question and each quote, and shows the best match(es), or says so when nothing clears the bar.</p>
+<form id="qa-form"><input id="qa-input" type="text" placeholder="e.g. Why are decisions slow?" autocomplete="off"><button type="submit">Search</button></form>
+<div id="qa-results"></div>
+<script src="search.js"></script>
+</section>
+<details class="theme">
+<summary>
+<span class="theme-summary-text">
 <span class="kicker">Theme 1</span>
 <h2>Decisions bottleneck at the top</h2>
 <p class="theme-desc">Approvals concentrate with the CEO and Executive Council, so routine matters wait weeks for decisions that could be made below them.</p>
+</span>
+<span class="chevron" aria-hidden="true">&#9662;</span>
+</summary>
+<div class="theme-body">
 <p class="sources-touched">Interviews touching this theme: <span class="count">5</span> &mdash; interview_1_President_and_CEO.txt, interview_2_Chief_Operating_Officer.txt, interview_3_Head_of_Learning.txt, interview_4_Head_of_Org_Effectiveness.txt, interview_5_Project_Manager.txt</p>
 <div class="quote-block">
 <blockquote>&ldquo;We just don&#x27;t deliver well. The hierarchy causes leadership to struggle with how to get approvals&rdquo;</blockquote>
@@ -263,11 +306,18 @@ code { background: var(--tint-soft); padding: 0.1rem 0.35rem; border-radius: 4px
 <blockquote>&ldquo;Example: Pulse Questions — the number of times the questions were reviewed by Core Team and Exec Council in a very circular way&rdquo;</blockquote>
 <p class="quote-meta">&mdash; Project Manager, <code>interview_5_Project_Manager.txt</code></p>
 </div>
-</section>
-<section class="theme">
+</div>
+</details>
+<details class="theme">
+<summary>
+<span class="theme-summary-text">
 <span class="kicker">Theme 2</span>
 <h2>GNP works in silos, and change lands without warning</h2>
 <p class="theme-desc">Departments and programs work in silos, and past change has reached staff without notice, fueling friction and skepticism.</p>
+</span>
+<span class="chevron" aria-hidden="true">&#9662;</span>
+</summary>
+<div class="theme-body">
 <p class="sources-touched">Interviews touching this theme: <span class="count">5</span> &mdash; interview_1_President_and_CEO.txt, interview_2_Chief_Operating_Officer.txt, interview_3_Head_of_Learning.txt, interview_4_Head_of_Org_Effectiveness.txt, interview_5_Project_Manager.txt</p>
 <div class="quote-block">
 <blockquote>&ldquo;Barriers to achieving the mission? We&#x27;re getting better but people work within their departments. &quot;The Community team won&#x27;t speak to the Early Childhood Education Team&quot;&rdquo;</blockquote>
@@ -429,11 +479,18 @@ code { background: var(--tint-soft); padding: 0.1rem 0.35rem; border-radius: 4px
 <blockquote>&ldquo;Program officers — matrixed — time spent on two teams, how do I split my time? How do my two supervisors split the time?&rdquo;</blockquote>
 <p class="quote-meta">&mdash; Project Manager, <code>interview_5_Project_Manager.txt</code></p>
 </div>
-</section>
-<section class="theme">
+</div>
+</details>
+<details class="theme">
+<summary>
+<span class="theme-summary-text">
 <span class="kicker">Theme 3</span>
 <h2>Grantee experience is declining</h2>
 <p class="theme-desc">Grantees describe a foundation that is slow, unclear about what it funds, and hard to build a lasting partnership with.</p>
+</span>
+<span class="chevron" aria-hidden="true">&#9662;</span>
+</summary>
+<div class="theme-body">
 <p class="sources-touched">Interviews touching this theme: <span class="count">5</span> &mdash; interview_1_President_and_CEO.txt, interview_2_Chief_Operating_Officer.txt, interview_3_Head_of_Learning.txt, interview_4_Head_of_Org_Effectiveness.txt, interview_5_Project_Manager.txt</p>
 <div class="quote-block">
 <blockquote>&ldquo;A lot of the institutions we support will be in need of both funding and strategic support&rdquo;</blockquote>
@@ -527,14 +584,7 @@ code { background: var(--tint-soft); padding: 0.1rem 0.35rem; border-radius: 4px
 <blockquote>&ldquo;Messaging to staff and grantees is lacking&rdquo;</blockquote>
 <p class="quote-meta">&mdash; Project Manager, <code>interview_5_Project_Manager.txt</code></p>
 </div>
-</section>
-<section class="theme">
-<span class="kicker">Ask a question</span>
-<h2>Search the verified quotes</h2>
-<p class="qa-caption">This is keyword-based retrieval over the verified quotes below &mdash; not a language model. It scores shared words between your question and each quote, and shows the best match(es), or says so when nothing clears the bar.</p>
-<form id="qa-form"><input id="qa-input" type="text" placeholder="e.g. Why are decisions slow?" autocomplete="off"><button type="submit">Search</button></form>
-<div id="qa-results"></div>
-<script src="search.js"></script>
-</section>
+</div>
+</details>
 <footer>Generated by <code>python main.py</code> from <code>interviews/</code> and <code>themes.json</code>. See <code>verification.html</code> for the pass/fail proof behind every quote above.</footer>
 </div></body></html>

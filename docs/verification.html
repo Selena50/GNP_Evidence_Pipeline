@@ -65,12 +65,41 @@ nav.top-links a:hover { text-decoration: underline; }
   margin-bottom: 0.5rem;
 }
 
-section.theme { margin: 4rem 0; }
-section.theme:first-of-type { margin-top: 0; }
+.theme { margin: 4rem 0; }
+nav.top-links + .theme { margin-top: 0; }
 h2 { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.6rem; }
 .theme-desc { color: var(--ink-soft); font-size: 1rem; margin: 0 0 1rem; }
 .sources-touched { font-size: 1rem; margin: 0 0 1.75rem; }
 .sources-touched .count { color: var(--accent); font-weight: 700; }
+
+details.theme { margin: 3rem 0; }
+details.theme > summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+details.theme > summary::-webkit-details-marker { display: none; }
+details.theme > summary::marker { content: ""; }
+details.theme > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+details.theme .theme-summary-text h2 { margin: 0 0 0.4rem; }
+details.theme .theme-summary-text .theme-desc { margin: 0; }
+details.theme .chevron {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-top: 0.1rem;
+  transition: transform 0.15s ease;
+}
+details.theme[open] .chevron { transform: rotate(180deg); }
+details.theme .theme-body { margin-top: 1.5rem; }
 
 .quote-block {
   background: var(--tint);
