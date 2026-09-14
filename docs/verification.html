@@ -30,24 +30,7 @@ body {
 a { color: var(--accent); }
 a:hover { color: var(--accent); text-decoration-thickness: 2px; }
 
-.site-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-top: 3rem;
-  padding-bottom: 2rem;
-}
-.site-header .titles { flex: 1 1 0%; min-width: 0; }
-.site-header .brand {
-  flex: 0 0 auto;
-  color: var(--ink);
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  white-space: nowrap;
-  margin-top: 0.3rem;
-}
+.site-header { margin-top: 3rem; padding-bottom: 2rem; }
 h1 { font-size: 2rem; font-weight: 700; margin: 0; }
 .subtitle { color: var(--ink-soft); margin-top: 0.75rem; font-size: 1rem; }
 
@@ -178,17 +161,15 @@ th {
 .qa-meta { font-size: 0.9rem; color: var(--ink-soft); }
 
 footer { color: var(--ink-soft); font-size: 0.9rem; margin-top: 4rem; }
+.quotes-link { display: block; color: var(--bg); text-decoration: none; margin-top: 1rem; font-size: 0.75rem; }
 code { background: var(--tint-soft); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="site-header">
-<div class="titles">
 <h1>Verbatim Verification Report</h1>
 <p class="subtitle">Every quote extracted from the interviews is re-checked here, independently of the extraction step, by looking it up as a literal substring of its cited source file (after normalizing smart quotes and whitespace &mdash; no fuzzy matching).</p>
-</div>
-<div class="brand">GNP</div>
 </header>
 <nav class="top-links"><a href="index.html">&larr; Evidence matrix</a></nav>
 <p class="tally"><span class="num">83</span> quotes extracted &middot; <span class="num">83</span> verified word-for-word &middot; <span class="num">0</span> failures</p>
