@@ -172,6 +172,12 @@ details.theme > summary:focus-visible {
 }
 details.theme .theme-summary-text h2 { margin: 0 0 0.4rem; }
 details.theme .theme-summary-text .theme-desc { margin: 0; }
+.quote-count {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
 details.theme .chevron {
   flex: 0 0 auto;
   color: var(--accent);
@@ -326,7 +332,11 @@ def render_index_html(themes: list[Theme], verified: list[VerificationResult]) -
         parts.append('<summary>')
         parts.append('<span class="theme-summary-text">')
         parts.append(f'<span class="kicker">Theme {i}</span>')
-        parts.append(f"<h2>{escape(theme.name)}</h2>")
+        quote_word = "quote" if len(theme_quotes) == 1 else "quotes"
+        parts.append(
+            f'<h2>{escape(theme.name)} '
+            f'<span class="quote-count">{len(theme_quotes)} {quote_word}</span></h2>'
+        )
         parts.append(f'<p class="theme-desc">{escape(theme.description)}</p>')
         parts.append("</span>")
         parts.append('<span class="chevron" aria-hidden="true">&#9662;</span>')
