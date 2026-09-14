@@ -32,6 +32,18 @@ function scoreQuote(queryTokens, quote) {
   return overlap;
 }
 
+const QUOTE_PAIRS = [['"', '"'], ['“', '”']];
+
+function isAlreadyQuoted(text) {
+  const t = text.trim();
+  if (t.length < 2) return false;
+  return QUOTE_PAIRS.some(([open, close]) => t[0] === open && t[t.length - 1] === close);
+}
+
+function displayQuote(text) {
+  return isAlreadyQuoted(text) ? text : `"${text}"`;
+}
+
 function renderResults(results) {
   const container = document.getElementById("qa-results");
   container.innerHTML = "";
@@ -46,7 +58,7 @@ function renderResults(results) {
     const div = document.createElement("div");
     div.className = "qa-result";
     const q = document.createElement("blockquote");
-    q.textContent = `"${quote.quote}"`;
+    q.textContent = displayQuote(quote.quote);
     const meta = document.createElement("div");
     meta.className = "qa-meta";
     meta.textContent = `${quote.speaker} — ${quote.source_file} — themes: ${quote.themes.join(", ")} (score ${score})`;

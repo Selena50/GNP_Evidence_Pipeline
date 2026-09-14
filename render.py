@@ -42,6 +42,18 @@ function scoreQuote(queryTokens, quote) {
   return overlap;
 }
 
+const QUOTE_PAIRS = [['"', '"'], ['“', '”']];
+
+function isAlreadyQuoted(text) {
+  const t = text.trim();
+  if (t.length < 2) return false;
+  return QUOTE_PAIRS.some(([open, close]) => t[0] === open && t[t.length - 1] === close);
+}
+
+function displayQuote(text) {
+  return isAlreadyQuoted(text) ? text : `"${text}"`;
+}
+
 function renderResults(results) {
   const container = document.getElementById("qa-results");
   container.innerHTML = "";
@@ -56,7 +68,7 @@ function renderResults(results) {
     const div = document.createElement("div");
     div.className = "qa-result";
     const q = document.createElement("blockquote");
-    q.textContent = `"${quote.quote}"`;
+    q.textContent = displayQuote(quote.quote);
     const meta = document.createElement("div");
     meta.className = "qa-meta";
     meta.textContent = `${quote.speaker} — ${quote.source_file} — themes: ${quote.themes.join(", ")} (score ${score})`;
@@ -253,9 +265,27 @@ code { background: var(--tint-soft); padding: 0.1rem 0.35rem; border-radius: 4px
 """
 
 
-def _theme_sources(theme_name: str, results: list[VerificationResult]) -> list[str]:
-    sources = sorted({r.source_file for r in results if theme_name in r.themes})
-    return sources
+_QUOTE_PAIRS = [('"', '"'), ("“", "”")]
+
+
+def _is_already_quoted(text: str) -> bool:
+    text = text.strip()
+    if len(text) < 2:
+        return False
+    return any(text[0] == open_q and text[-1] == close_q for open_q, close_q in _QUOTE_PAIRS)
+
+
+def _display_quote_html(quote: str) -> str:
+    escaped = escape(quote)
+    if _is_already_quoted(quote):
+        return escaped
+    return f"&ldquo;{escaped}&rdquo;"
+
+
+def _display_quote_plain(quote: str) -> str:
+    if _is_already_quoted(quote):
+        return quote
+    return f'"{quote}"'
 
 
 def render_index_html(themes: list[Theme], verified: list[VerificationResult]) -> str:
@@ -292,7 +322,6 @@ def render_index_html(themes: list[Theme], verified: list[VerificationResult]) -
 
     for i, theme in enumerate(themes, start=1):
         theme_quotes = [r for r in verified if theme.name in r.themes]
-        sources = _theme_sources(theme.name, verified)
         parts.append('<details class="theme">')
         parts.append('<summary>')
         parts.append('<span class="theme-summary-text">')
@@ -303,16 +332,11 @@ def render_index_html(themes: list[Theme], verified: list[VerificationResult]) -
         parts.append('<span class="chevron" aria-hidden="true">&#9662;</span>')
         parts.append("</summary>")
         parts.append('<div class="theme-body">')
-        if sources:
-            parts.append(
-                f'<p class="sources-touched">Interviews touching this theme: '
-                f'<span class="count">{len(sources)}</span> &mdash; {escape(", ".join(sources))}</p>'
-            )
-        else:
+        if not theme_quotes:
             parts.append('<p class="sources-touched">No verified quotes matched this theme yet.</p>')
         for r in theme_quotes:
             parts.append('<div class="quote-block">')
-            parts.append(f'<blockquote>&ldquo;{escape(r.quote)}&rdquo;</blockquote>')
+            parts.append(f'<blockquote>{_display_quote_html(r.quote)}</blockquote>')
             other_themes = [t for t in r.themes if t != theme.name]
             other_note = f' <span class="tag">also: {escape(", ".join(other_themes))}</span>' if other_themes else ""
             parts.append(
@@ -369,7 +393,7 @@ def render_verification_html(all_results: list[VerificationResult]) -> str:
         for r in all_results:
             if not r.passed:
                 parts.append(
-                    f'<tr><td>&ldquo;{escape(r.quote)}&rdquo;</td><td>{escape(r.speaker)}</td>'
+                    f'<tr><td>{_display_quote_html(r.quote)}</td><td>{escape(r.speaker)}</td>'
                     f'<td class="src">{escape(r.source_file)}</td><td class="status-fail">FAIL</td></tr>'
                 )
         parts.append("</table></div>")
@@ -387,7 +411,7 @@ def render_verification_html(all_results: list[VerificationResult]) -> str:
         status_cls = "status-pass" if r.passed else "status-fail"
         status_text = "PASS" if r.passed else "FAIL"
         parts.append(
-            f'<tr><td>&ldquo;{escape(r.quote)}&rdquo;</td><td>{escape(r.speaker)}</td>'
+            f'<tr><td>{_display_quote_html(r.quote)}</td><td>{escape(r.speaker)}</td>'
             f'<td class="src">{escape(r.source_file)}</td><td>{escape(", ".join(r.themes))}</td>'
             f'<td class="{status_cls}">{status_text}</td></tr>'
         )
@@ -409,7 +433,7 @@ def render_verification_txt(all_results: list[VerificationResult]) -> str:
         lines.append("-" * 8)
         for r in all_results:
             if not r.passed:
-                lines.append(f'FAIL: "{r.quote}"  [{r.speaker} — {r.source_file}]')
+                lines.append(f'FAIL: {_display_quote_plain(r.quote)}  [{r.speaker} — {r.source_file}]')
         lines.append("")
 
     lines.append("ALL RESULTS")
@@ -417,7 +441,7 @@ def render_verification_txt(all_results: list[VerificationResult]) -> str:
     for r in all_results:
         status = "PASS" if r.passed else "FAIL"
         themes = ", ".join(r.themes)
-        lines.append(f'{status}: "{r.quote}"  [{r.speaker} — {r.source_file}] themes: {themes}')
+        lines.append(f'{status}: {_display_quote_plain(r.quote)}  [{r.speaker} — {r.source_file}] themes: {themes}')
 
     return "\n".join(lines) + "\n"
 
