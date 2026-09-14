@@ -8,9 +8,41 @@
     ]
   },
   {
+    "quote": "My President's Discretionary Fund",
+    "speaker": "President & CEO",
+    "source_file": "interview_1_President_and_CEO.txt",
+    "themes": [
+      "Grantee experience is declining"
+    ]
+  },
+  {
+    "quote": "Our current structure relies too much on 'one person at the top having the answer'",
+    "speaker": "President & CEO",
+    "source_file": "interview_1_President_and_CEO.txt",
+    "themes": [
+      "Decisions bottleneck at the top"
+    ]
+  },
+  {
     "quote": "The Community team won't speak to the Early Childhood Education Team",
     "speaker": "President & CEO",
     "source_file": "interview_1_President_and_CEO.txt",
+    "themes": [
+      "GNP works in silos, and change lands without warning"
+    ]
+  },
+  {
+    "quote": "As an organization we are very resistant to change — no one wants to change what they do or how they do it. Inertia is a dominating force and it takes a lot for us to break out of old ways of working",
+    "speaker": "President & CEO",
+    "source_file": "interview_1_President_and_CEO.txt",
+    "themes": [
+      "GNP works in silos, and change lands without warning"
+    ]
+  },
+  {
+    "quote": "braided efforts to execute",
+    "speaker": "Chief Operating Officer",
+    "source_file": "interview_2_Chief_Operating_Officer.txt",
     "themes": [
       "GNP works in silos, and change lands without warning"
     ]
@@ -20,7 +52,8 @@
     "speaker": "Chief Operating Officer",
     "source_file": "interview_2_Chief_Operating_Officer.txt",
     "themes": [
-      "GNP works in silos, and change lands without warning"
+      "GNP works in silos, and change lands without warning",
+      "Grantee experience is declining"
     ]
   },
   {
@@ -29,6 +62,30 @@
     "source_file": "interview_2_Chief_Operating_Officer.txt",
     "themes": [
       "Grantee experience is declining"
+    ]
+  },
+  {
+    "quote": "The ability to know what resources you need and when to engage them",
+    "speaker": "Chief Operating Officer",
+    "source_file": "interview_2_Chief_Operating_Officer.txt",
+    "themes": [
+      "Grantee experience is declining"
+    ]
+  },
+  {
+    "quote": "How does the Foundation show up in these communities?",
+    "speaker": "Head of Learning",
+    "source_file": "interview_3_Head_of_Learning.txt",
+    "themes": [
+      "Grantee experience is declining"
+    ]
+  },
+  {
+    "quote": "The focusing on one's own domain is well intentioned but not helpful to delivering effectively as an organization — the collaborative approach to the strategy papers demonstrated what can happen when people work across teams",
+    "speaker": "Head of Learning",
+    "source_file": "interview_3_Head_of_Learning.txt",
+    "themes": [
+      "GNP works in silos, and change lands without warning"
     ]
   },
   {
